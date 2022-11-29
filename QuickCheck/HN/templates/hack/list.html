@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}My Job{% endblock %}
+{% block content %}
+<h1>My Hacker News</h1>
+{% for post in posts %}
+<h2>
+  <a href="{% url 'post_detail' post.id %}">
+    {{ post.title }}
+  </a>
+
+</h2>
+<p class="type">
+  Published <a href="{% url post.type %}"> {{ post.type }} </a> by {{ post.by }}
+  {% if post.score %}
+<button class="type" style="border:.5px solid grey; border-radius:5px; font-size:12px;">{{post.score|default:0 }} like</button>
+  {% endif %}
+</p>
+{% endfor %}
+{% include "pagination.html" with page=posts %}
+{% endblock %}
+{% block script %}
+<script></script>
+{% endblock %}
