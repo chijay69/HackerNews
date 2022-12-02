@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
 from .forms import SearchForm
+from .job2 import load_db
 from .models import *
 
 # Create your views here.
@@ -161,3 +162,4 @@ def post_search(request):
 
 def index(request):
     return HttpResponse('<h1>This is a H1 heading!</h1>')
+

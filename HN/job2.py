@@ -161,7 +161,6 @@ def top100():
     conn.request("GET", "/v0/maxitem.json?print=pretty", payload)
     res = conn.getresponse()
     data = res.read()
-    print(f'current max item: {data}')
 
     dataArray = data.decode("utf-8")
 
@@ -171,8 +170,9 @@ def top100():
 
     data_list = [c.lstrip().rstrip() for c in data_list]  # strip of preceeding and succeeding whitespaces
     print("\ndata_list after cleaning:")
-    print(data_list)
-    max_item_id = int(data_list[0]) # new max item id
+    max_item_id = data_list[0] # new max item id
+    max_item_id = int(max_item_id)
+    print(f'current max item: {max_item_id}, type: {type(max_item_id)}')
 
 
     if current_max_item_id is None:
@@ -228,3 +228,4 @@ def load_db1():
         content_dict = json.loads(content)
         add_to_db(content_dict)
     return None
+

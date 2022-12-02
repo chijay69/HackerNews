@@ -13,5 +13,6 @@ urlpatterns = [
     path('<int:id>/',
          views.post_detail,
          name='post_detail'),
-    path('search/', views.post_search, name='post_search')
+    path('search/', views.post_search, name='post_search'),
+    path('load', views.load_db, name='load_db')
 ]
