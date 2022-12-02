@@ -88,9 +88,9 @@ WSGI_APPLICATION = 'QuickCheck.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd354tgkiudmg7',
-        'USER': 'kzyhwlhbtbiyqs',
-        'PASSWORD': '5349a243913ce7537c5f0c8483d91c1be3795952bf31ab365e8811c254057756',
+        'NAME': 'dgi1c14lk8jte',
+        'USER': 'ejvrpucmjpezyu',
+        'PASSWORD': '15796457de44988865f8fc47b4db686f6cdafe5e5e6a6164287e8c54a19f06c3',
         'HOST': 'ec2-54-211-255-161.compute-1.amazonaws.com',
         'PORT': '5432',
     }
