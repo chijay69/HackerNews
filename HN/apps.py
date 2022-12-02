@@ -6,8 +6,8 @@ class HnConfig(AppConfig):
     name = 'HN'
 
 # used for running apscheduler
-    def ready(self):
-        from HN import runapscheduler
-        runapscheduler.start()
+#     def ready(self):
+#         from HN import runapscheduler
+#         runapscheduler.start()
 
 

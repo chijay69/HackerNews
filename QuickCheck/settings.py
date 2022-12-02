@@ -38,12 +38,7 @@ INSTALLED_APPS = [
     'HN',
     'django.contrib.postgres',
     'rest_framework',
-    "django_apscheduler",
 ]
-
-APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"  # Default
-
-SCHEDULER_DEFAULT = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -88,10 +83,10 @@ WSGI_APPLICATION = 'QuickCheck.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dgi1c14lk8jte',
-        'USER': 'ejvrpucmjpezyu',
-        'PASSWORD': '15796457de44988865f8fc47b4db686f6cdafe5e5e6a6164287e8c54a19f06c3',
-        'HOST': 'ec2-34-235-198-25.compute-1.amazonaws.com',
+        'NAME': 'd4gvj63f63mdp9',
+        'USER': 'tdegsrfqmzpkbu',
+        'PASSWORD': '691847e5aaad23bb2ad3016db06c3aeec3323acda7333304a7d5082cc6cd785a',
+        'HOST': 'ec2-44-205-41-76.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
