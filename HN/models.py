@@ -1,42 +1,38 @@
-import uuid
-
-from django.db import models
-from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
-
-# Create your models here.
+from django.db import models
 from django.utils.datetime_safe import datetime
 
 
 # the managers
-class JobManager(models.Manager):
-    def get_queryset(self):
-        return super(JobManager, self).get_queryset().filter(type='job')
-
-
-class StoryManager(models.Manager):
-    def get_queryset(self):
-        return super(StoryManager, self).get_queryset().filter(type='story')
-
-
-class CommentManager(models.Manager):
-    def get_queryset(self):
-        return super(CommentManager, self).get_queryset().filter(type='comment')
-
-
-class PollManager(models.Manager):
-    def get_queryset(self):
-        return super(PollManager, self).get_queryset().filter(type='poll')
-
-
-class POManager(models.Manager):
-    def get_queryset(self):
-        return super(POManager, self).get_queryset().filter(type='pollopt')
-
+# class JobManager(models.Manager):
+#     def get_queryset(self):
+#         return super(JobManager, self).get_queryset().filter(type='job')
+#
+#
+# class StoryManager(models.Manager):
+#     def get_queryset(self):
+#         return super(StoryManager, self).get_queryset().filter(type='story')
+#
+#
+# class CommentManager(models.Manager):
+#     def get_queryset(self):
+#         return super(CommentManager, self).get_queryset().filter(type='comment')
+#
+#
+# class PollManager(models.Manager):
+#     def get_queryset(self):
+#         return super(PollManager, self).get_queryset().filter(type='poll')
+#
+#
+# class POManager(models.Manager):
+#     def get_queryset(self):
+#         return super(POManager, self).get_queryset().filter(type='pollopt')
+#
 
 def default_thing():
     return []
 
+# Create your models here.
 
 class BaseModel(models.Model):
     STATUS_CHOICES = (
@@ -72,18 +68,18 @@ class JobModel(BaseModel):
 
     objects = models.Manager()  # The default manager.
     # custom managers
-    job = JobManager()
+    # job = JobManager()
 
 
 class StoryModel(BaseModel):
     descendants = models.IntegerField(blank=True, null=True)
-    score = models.IntegerField()  # the story score or vote count
+    score = models.IntegerField(blank=True, null=True)  # the story score or vote count
     title = models.CharField(max_length=250, blank=True, default='', null=True)
     url = models.URLField(blank=True, null=True)
 
     objects = models.Manager()  # The default manager.
     # custom managers
-    story = StoryManager()
+    # story = StoryManager()
 
 
 class CommentModel(BaseModel):
@@ -92,19 +88,19 @@ class CommentModel(BaseModel):
 
     objects = models.Manager()  # The default manager.
     # custom managers
-    comment = CommentManager()
+    # comment = CommentManager()
 
 
 class PollModel(BaseModel):
     parts = ArrayField(models.IntegerField(), default=default_thing, blank=True, null=True)
     descendants = models.IntegerField(blank=True, null=True)
-    score = models.IntegerField()  # the story score or vote count
+    score = models.IntegerField(blank=True, null=True)  # the story score or vote count
     title = models.CharField(max_length=250, blank=True, null=True)
     text = models.CharField(max_length=8192, blank=True, null=True)
 
     objects = models.Manager()  # The default manager.
     # custom managers
-    poll = PollManager()
+    # poll = PollManager()
 
 
 class PolloptModel(BaseModel):
@@ -113,4 +109,4 @@ class PolloptModel(BaseModel):
 
     objects = models.Manager()  # The default manager.
     # custom managers
-    pollopt = POManager()
+    # pollopt = POManager()

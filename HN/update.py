@@ -1,26 +1,57 @@
+import os
+import logging
+
 from apscheduler.schedulers.background import BackgroundScheduler
+from django_apscheduler.jobstores import register_events, DjangoJobStore
+from django.core.management.base import BaseCommand
+from apscheduler.triggers.cron import CronTrigger
 
-from HN.views import load_db, load_db_after
-
-max_item_url = "https://hacker-news.firebaseio.com/v0/maxitem.json?print=pretty"
+from HN.job2 import load_db, load_db1
 
 
-class MyClass:
+logger = logging.getLogger(__name__)
+
+
+def myJob1(self):
+    return load_db1()
+
+
+def my_job():
+    return load_db1()
+
+
+class MyClass(BaseCommand):
     def __init__(self):
         self.scheduler = BackgroundScheduler()
 
     def schedule(self):
-        self.myJob()  # run your job immediately here, then scheduler
-        self.scheduler.add_job(self.myJob1, 'interval', minutes=5)
-        self.scheduler.start()
+        self.scheduler.add_jobstore(DjangoJobStore(), 'mongorestore')
+        register_events(self.scheduler)
 
-    def myJob(self):
-        return load_db(max_item_url)
+        my_job()
+        print('started job')
+        self.scheduler.add_job(my_job, 'interval', id="my_job", minutes=5, max_instances=1)
+        logger.info("Added job 'myJob'.")
 
-    def myJob1(self):
-        return load_db_after(max_item_url)
+        if os.environ.get('RUN_MAIN'):
+            logger.info("Starting scheduler...")
+            self.scheduler.start()
+
 
 
 def start():
     my_scheduler = MyClass()
     my_scheduler.schedule()
+
+
+
+# def start():
+#     scheduler = BackgroundScheduler()
+#     scheduler.add_jobstore(DjangoJobStore(), 'default')
+#     register_events(scheduler)
+#
+#     @scheduler.scheduled_job('interval', seconds=1, name='auto_my_job', minutes=5, max_instances=1)
+#     def auto_hello():
+#         my_job()
+#
+#     scheduler.start()

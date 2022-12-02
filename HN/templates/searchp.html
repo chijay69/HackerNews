@@ -14,11 +14,12 @@
   {% empty %}
   <p>There are no results for your query.</p>
   {% endfor %}
-  <p><a href="{% url "post_list" %}">Home</a></p>
+  <p><a href='{% url "post_list" %}'>Home</a></p>
   
   {% else %}
-  <form action="{% url "post_search" %}" method="get" style="text-align:left;">
-    <input style="text-align:left;" type="search", name="query", placeholder="search"/>
+  <form action='{% url "post_search" %}' method="post" style="text-align:left;">
+    {% csrf_token %}
+    <input style="text-align:left;" type="search", name="query" placeholder="search"/>
     <input style="text-align:right;" type="submit" value="Search">
   </form>
   {% endif %}

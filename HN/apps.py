@@ -1,14 +1,17 @@
-import time
-
 from django.apps import AppConfig
-
-new_stories_url = '/v0/newstories.json?print=pretty'
 
 
 class HnConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'HN'
 
+# used for running appscheduler
     def ready(self):
-        from HN import update
-        update.start()
+        # or use backgroundsheduler
+        # from HN import update
+        # update.start()
+        # use django-apsheduler
+        # from HN.runapscheduler import Command
+        # Command().handle()
+
+

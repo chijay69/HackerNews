@@ -2,6 +2,7 @@
 {% block title %}My Job{% endblock %}
 {% block content %}
 <h1>My Hacker News</h1>
+<h4>Latest items</h4>
 {% for post in posts %}
 <h2>
   <a href="{% url 'post_detail' post.id %}">

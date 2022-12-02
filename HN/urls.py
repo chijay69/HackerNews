@@ -13,6 +13,5 @@ urlpatterns = [
     path('<int:id>/',
          views.post_detail,
          name='post_detail'),
-    path('search/', views.post_search, name='post_search'),
-    path('load', views.loadView, name='load_db')
+    path('search/', views.post_search, name='post_search')
 ]

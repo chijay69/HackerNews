@@ -3,6 +3,6 @@ from HN.models import BaseModel
 
 
 class ItemSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = BaseModel
-        fields = '__all__'
+    # class Meta:
+    #     model = BaseModel
+    #     fields = '__all__'
